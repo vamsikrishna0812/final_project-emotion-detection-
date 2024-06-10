@@ -8,14 +8,15 @@ def emotion_detector(text_to_analyze):
     
     response = requests.post(url, headers=headers, json=data)
 
-    response_dict = json.loads(response.text)
-    
+    formated_response = json.loads(response.text)
+    print(response)
+    print(formated_response)
     # Extract emotion scores
-    anger_score = response_dict['anger']
-    disgust_score = response_dict['disgust']
-    fear_score = response_dict['fear']
-    joy_score = response_dict['joy']
-    sadness_score = response_dict['sadness']
+    anger_score = formated_response['anger']
+    disgust_score = formated_response['disgust']
+    fear_score = formated_response['fear']
+    joy_score = formated_response['joy']
+    sadness_score = formated_response['sadness']
     
     # Find the dominant emotion
     emotions = {'anger': anger_score, 'disgust': disgust_score, 'fear': fear_score, 'joy': joy_score, 'sadness': sadness_score}
@@ -30,3 +31,4 @@ def emotion_detector(text_to_analyze):
         'sadness': sadness_score,
         'dominant_emotion': dominant_emotion
     }
+emotion_detector("iam so happy iam doing this")
